@@ -65,10 +65,14 @@ pub enum Operations {
 #[derive(Serialize,Deserialize, Debug)]
 pub struct Handshake {
     pub id: u8,
+    pub version: u8,
+    pub type: u8,
     pub mac: [u8; 12],
-    pub bounce_count: u8,
-    pub hub_time: u32,
-    pub node_time: u32
+    pub name: [u8; 100],
+    pub channel: u8,
+    pub calib_threshold: u16,
+    pub enter_offset: u16,
+    pub exit_offset: u16,
 }
 #[derive(Serialize,Deserialize, Debug)]
 pub struct Timesync {

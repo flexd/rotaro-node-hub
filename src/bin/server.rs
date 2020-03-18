@@ -27,6 +27,8 @@ fn handle_client(mut stream: TcpStream) {
 			rotaro_node::parser::OpCode::Handshake => {
 				let cmd: rotaro_node::parser::Handshake  = bincode::deserialize_from(&stream).unwrap();
 				info!("cmd is: {:?}", cmd);
+				let data = bincode::serialize(&rotaro_node::parser::Handshake{id: 101, mac: *b"aaaabbbbcccc", bounce_count: 0, hub_time: 1337, node_time: 4848}).unwrap();
+				stream.write(&data).unwrap();
 			},
 			_ => {
 				info!("I don't know this command");
